@@ -56,10 +56,10 @@
 
           {{-- Admin: ALL --}}
           @if($role === 'Employee' && $pos === 'Admin')
-            <a href="{{ $dashUrl }}" class="list-group-item list-group-item-action {{ request()->is('admin/dashboard') || request()->is('staff/dashboard') ? 'active' : '' }}">
+            <a href="{{ $dashUrl }}" class="list-group-item list-group-item-action" style="background-color: rgb(159, 238, 208)">
             Dashboard
             </a>
-            <a href="/profile" class="list-group-item list-group-item-action {{ $isProfile ? 'active' : '' }}">
+            <a href="/profile" class="list-group-item list-group-item-action">
               Profile
             </a>
             <a href="/user" class="list-group-item list-group-item-action"> - User </a>
@@ -73,10 +73,10 @@
 
           {{-- Staff: Cat + Order --}}
           @if($role === 'Employee' && $pos === 'Staff')
-            <a href="{{ $dashUrl }}" class="list-group-item list-group-item-action {{ request()->is('admin/dashboard') || request()->is('staff/dashboard') ? 'active' : '' }}">
+            <a href="{{ $dashUrl }}" class="list-group-item list-group-item-action" style="background-color: rgb(159, 238, 208)">
             Dashboard
             </a>
-            <a href="/profile" class="list-group-item list-group-item-action {{ $isProfile ? 'active' : '' }}">
+            <a href="/profile" class="list-group-item list-group-item-action">
               Profile
             </a>
             <a href="/cat" class="list-group-item list-group-item-action"> - Cat </a>
@@ -85,7 +85,7 @@
 
           {{-- Profile link for everyone; active only when on /profile --}}
           @if($role === 'Member')
-            <a href="/profile" class="list-group-item list-group-item-action {{ $isProfile ? 'active' : '' }}">
+            <a href="/profile" class="list-group-item list-group-item-action" style="background-color: rgb(159, 238, 208)">
               Profile
             </a>
           @endif
