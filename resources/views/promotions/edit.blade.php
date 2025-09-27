@@ -14,8 +14,8 @@
     <div class="form-group row mb-2">
         <label class="col-sm-2"> Promotion Detail </label>
         <div class="col-sm-7">
-            <input type="text" class="form-control" name="promotion_detail" required placeholder="Promotion Detail"
-                value="{{ $promotion_detail }}">
+            <textarea name="promotion_detail" class="form-control" rows="4" required
+                placeholder="Promotion Detail">{{ old('promotion_detail', $promotion_detail) }}</textarea>
             @if(isset($errors))
             @if($errors->has('promotion_detail'))
             <div class="text-danger"> {{ $errors->first('promotion_detail') }}</div>
