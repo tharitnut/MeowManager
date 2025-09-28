@@ -215,12 +215,21 @@ class MenuItemController extends Controller
     } //remove 
 
 
-    public function home_index()
+    public function home_index(Request $request)
     {
-        Paginator::useBootstrap(); // ใช้ Bootstrap pagination
-        $items = MenuItemModel::orderBy('item_id')->paginate(12); //order by & pagination
-        //return response()->json(['error' => $e->getMessage()], 500); //สำหรับ debug
-        return view('pages.menu_index', compact('items'));
+        Paginator::useBootstrap();
+
+        $category = $request->query('category');        // 'Food' | 'Drink' | null
+        $keyword  = trim((string) $request->query('keyword', ''));
+
+        $items = MenuItemModel::query()
+            ->when($category, fn ($q) => $q->where('category', $category))
+            ->when($keyword !== '', fn ($q) => $q->where('item_name', 'like', "%{$keyword}%"))
+            ->orderBy('item_id')
+            ->paginate(12)
+            ->appends($request->query());               // keep filters on pagination links
+
+        return view('pages.menu_index', compact('items', 'category', 'keyword'));
     }
 
 

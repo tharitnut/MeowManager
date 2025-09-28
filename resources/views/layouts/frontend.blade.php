@@ -7,53 +7,100 @@
   <title>MeowManager</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  
+  <!-- Cat Café Theme -->
+  <style>
+    body {
+      background-color: #fff8da; /* cream background */
+      color: #5c4630; /* dark mocha text */
+      font-family: 'Kodchasan', sans-serif;
+    }
+
+    .navbar {
+      background-color: #6b4226; /* coffee brown */
+      padding-left: 40px;      
+      padding-right: 40px;     
+    }
+
+    .navbar-brand {
+      color: #FFDD72 !important; /* cream */
+      font-weight: 700;
+      font-size: 36px;
+    }
+
+    /* .navbar-brand:hover {
+      color: #FFDD72 !important; playful pink
+    } */
+
+    .navbar-nav .nav-link {
+      color: #FFF7E1 !important; /* cream */
+      font-weight: 600;
+      font-size: 20px;
+      margin: 12px 6px 0 0; /* top right bottom left */
+      transition: color 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+      color: #FFDD72 !important; /* green highlight */
+    }
+
+    .btn-login {
+      background-color: #F1D7A4; /* pastel pink */
+      color: #4A2C2A; /* brown text */
+      font-weight: 600;
+      border-radius: 30px;
+      padding: 6px 18px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-login:hover {
+      background-color: #D08B49; /* green on hover */
+      color: #FFFFFF; /* cream text */
+    }
+
+    footer {
+      color: #6b4226;
+      font-size: 0.9rem;
+    }
+  </style>
+
   @yield('css_before')
 </head>
 
 <body>
 
   <!-- start navbar  -->
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-12">
-        <nav class="navbar navbar-expand-lg bg-primary">
-          <div class="container">
-            <a class="navbar-brand text-white" href="/">Meow Manager</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-              aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-white" href="cat_page">Cat</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-white" href="menu_page">Menu</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-white" href="promotion_page">Promotion</a>
-                </li>
-              </ul>
-              <a href="/login" class="btn btn-success">Login</a>
-
-
-            </div>
-          </div>
-        </nav>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid"> <!-- full width -->
+      <a class="navbar-brand" href="/">MeowMoment</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/cat_page">Cat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/menu_page">Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/promotion_page">Promotion</a>
+          </li>
+        </ul>
+        <a href="/login" class="btn btn-login">Login</a>
       </div>
     </div>
-  </div>
+  </nav>
+<!-- end navbar  -->
+
   <!-- end navbar  -->
-
- 
-
-
-
 
   <div class="container mt-2">
     <div class="row">
@@ -61,14 +108,13 @@
     </div>
   </div>
 
-
-  <footer class="mt-5 mb-2">
-    <p class="text-center">by devbanban.com @2025</p>
-    <p class="text-center">
-        This page is intended for educational and non-commercial use only. Some
-        images or content displayed may be subject to copyright or licensing
-        restrictions. All rights remain with their respective owners.
-      </p>
+  <footer class="mt-5 mb-2 text-center">
+    <p>by devbanban.com @2025</p>
+    <p>
+      This page is intended for educational and non-commercial use only. Some
+      images or content displayed may be subject to copyright or licensing
+      restrictions. All rights remain with their respective owners.
+    </p>
   </footer>
 
   @yield('footer')
