@@ -1,6 +1,12 @@
 @extends('home')
 @section('css_before')
+<link href="https://cdn.jsdelivr.net/npm/cropperjs@1.6.2/dist/cropper.min.css" rel="stylesheet">
+<style>
+  .img-container { max-height: 60vh; display:flex; align-items:center; justify-content:center; background:#f8f9fa; }
+  .img-container img { max-width: 100%; }
+</style>
 @endsection
+
 @section('header')
 @endsection
 @section('sidebarMenu')
@@ -129,12 +135,18 @@
     <div class="form-group row mb-2">
         <label class="col-sm-2"> Picture </label>
         <div class="col-sm-7">
-            <input type="file" name="employee_pic" accept="image/*">
+            <input type="file" name="employee_pic" accept="image/*"
+                class="form-control"
+                data-cropper-target="#employee_pic_cropped">
+            <input type="hidden" name="employee_pic_cropped" id="employee_pic_cropped">
             @if(isset($errors))
-            @if($errors->has('employee_pic')) <div class="text-danger">{{ $errors->first('employee_pic') }}</div> @endif
+            @if($errors->has('employee_pic'))
+                <div class="text-danger">{{ $errors->first('employee_pic') }}</div>
+            @endif
             @endif
         </div>
     </div>
+
 
     <div class="form-group row mb-2">
         <label class="col-sm-2"> </label>
@@ -151,5 +163,79 @@
 @section('footer')
 @endsection
 @section('js_before')
+<script src="https://cdn.jsdelivr.net/npm/cropperjs@1.6.2/dist/cropper.min.js"></script>
+
+{{-- shared cropper modal (1:1) --}}
+<div class="modal fade" id="cropperModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title">Crop Image (1:1)</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="img-container">
+          <img id="cropperImage" src="" alt="">
+        </div>
+        <small class="text-muted d-block mt-2">Use mouse wheel to zoom, drag to position.</small>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btnCrop" class="btn btn-success">Crop & Use</button>
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  let cropper, currentHiddenInput;
+
+  const cropperModalEl = document.getElementById('cropperModal');
+  if (!cropperModalEl) return; // safety
+  const cropperModal = new bootstrap.Modal(cropperModalEl, { keyboard:false });
+  const cropperImg = document.getElementById('cropperImage');
+
+  function attachCropperTo(input) {
+    input.addEventListener('change', (e) => {
+      const [file] = e.target.files || [];
+      if (!file) return;
+
+      const targetSelector = input.getAttribute('data-cropper-target');
+      currentHiddenInput = document.querySelector(targetSelector);
+      if (!currentHiddenInput) return;
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        cropperImg.src = reader.result;
+        cropperModal.show();
+        cropperImg.onload = () => {
+          if (cropper) cropper.destroy();
+          cropper = new Cropper(cropperImg, {
+            aspectRatio: 1,
+            viewMode: 1,
+            background: false,
+            autoCropArea: 1,
+            dragMode: 'move',
+            responsive: true,
+          });
+        };
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // Bind all file inputs that declare a target
+  document.querySelectorAll('input[type="file"][data-cropper-target]').forEach(attachCropperTo);
+
+  document.getElementById('btnCrop').addEventListener('click', () => {
+    if (!cropper || !currentHiddenInput) return;
+    const canvas = cropper.getCroppedCanvas({ width: 600, height: 600 });
+    currentHiddenInput.value = canvas.toDataURL('image/jpeg', 0.9);
+    cropperModal.hide();
+  });
+})();
+</script>
 @endsection
+
 {{-- devbanban.com --}}

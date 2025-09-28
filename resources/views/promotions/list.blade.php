@@ -31,7 +31,7 @@
             <td align="center">{{ $loop->iteration }}.</td>
 
             <td>
-                <b>{{ $row->promotion_detail }}</b>
+                <b>{!! nl2br(e($row->promotion_detail)) !!}</b>
             </td>
 
             <td align="center">

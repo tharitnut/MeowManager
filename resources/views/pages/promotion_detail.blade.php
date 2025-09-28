@@ -26,7 +26,7 @@
                 <h3 class="card-title mb-3">Promotion #{{ $promotion_id }}</h3>
                 <p class="mb-2">
                     <strong>Details:</strong> <br>
-                    {{ $promotion_detail }}
+                    {!! nl2br(e($promotion_detail)) !!}
                 </p>
                 <a href="/promotion_page" class="btn btn-outline-primary mt-3">← Back to Promotions</a>
             </div>
