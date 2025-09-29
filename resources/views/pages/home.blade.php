@@ -202,8 +202,8 @@
 <section class="section-pad">
   <div class="container">
     <div class="text-center mb-4">
-      <h2 class="text-coffee fw-bold">How it works</h2>
-      <p class="mb-0">Enjoy a relaxing visit with coffee, treats, and our roaming cats.</p>
+      <h2 class="text-coffee fw-bold">Your MeowMoment experience</h2>
+      <p class="mb-0">From the first sip to the last cuddle, every visit is filled with warmth, paws, and purrs.</p>
     </div>
     <div class="row g-4">
       <div class="col-md-4">
@@ -211,8 +211,8 @@
           <div class="icon-bubble mb-3">
             <img src="https://img.icons8.com/ios-glyphs/48/enter-2.png" width="28" height="28" alt="Walk in">
           </div>
-          <h4 class="text-coffee">1) Walk in</h4>
-          <p>Come by anytime during our open hours. Our friendly staff will guide you to a cozy table.</p>
+          <h4 class="text-coffee">1) Step inside</h4>
+          <p>Walk in and feel at home — our team will welcome you and show you to a cozy spot.</p>
         </div>
       </div>
       <div class="col-md-4">
@@ -220,8 +220,8 @@
           <div class="icon-bubble mb-3">
             <img src="https://img.icons8.com/ios-glyphs/48/coffee.png" width="28" height="28" alt="Order">
           </div>
-          <h4 class="text-coffee">2) Order & enjoy</h4>
-          <p>Pick your favorite drinks and desserts from our cat-themed menu and relax at your table.</p>
+          <h4 class="text-coffee">2) Sip & savor</h4>
+          <p>Choose from our cat-inspired drinks and treats, then relax as the café’s warm vibe surrounds you.</p>
         </div>
       </div>
       <div class="col-md-4">
@@ -229,8 +229,8 @@
           <div class="icon-bubble mb-3">
             <img src="https://img.icons8.com/ios-glyphs/48/cat.png" width="28" height="28" alt="Play with cats">
           </div>
-          <h4 class="text-coffee">3) Play with cats</h4>
-          <p>Our cats roam freely around the café. Watch them nap, play, or come over for cuddles while you sip.</p>
+          <h4 class="text-coffee">3) Purr & play</h4>
+          <p>Our cats roam freely — let them come to you for cuddles, gentle play, or simply quiet company.</p>
         </div>
       </div>
     </div>

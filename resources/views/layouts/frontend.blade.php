@@ -4,9 +4,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MeowManager</title>
+  <title>MeowMoment</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="{{ asset('images/MeowMoment_logo.png') }}">
+
   
   <!-- Cat Café Theme -->
   <style>
@@ -73,7 +75,11 @@
   <!-- start navbar  -->
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid"> <!-- full width -->
-      <a class="navbar-brand" href="/">MeowMoment</a>
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="{{ asset('images/MeowMoment_logo.png') }}" alt="MeowMoment Logo" 
+            style="height:60px; width:auto; margin-right:10px;">
+        MeowMoment
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
         aria-expanded="false" aria-label="Toggle navigation">
