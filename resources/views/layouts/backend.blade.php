@@ -113,7 +113,7 @@
   </div>
 
   <footer class="mt-5 mb-2">
-    <p class="text-center">by devbanban.com @2025</p>
+    <p class="text-center">by MeowManager @2025</p>
     <p class="text-center">
       This page is intended for educational and non-commercial use only. Some
       images or content displayed may be subject to copyright or licensing
