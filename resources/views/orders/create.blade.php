@@ -1,6 +1,15 @@
 @extends('home')
 
 @section('css_before')
+<style>
+  /* Mobile fallback: stack the button full-width */
+  @media (max-width: 767.98px) {
+    .btn-remove-item {
+      width: 100%;
+      margin-top: 8px;
+    }
+  }
+</style>
 @endsection
 
 @section('header')
@@ -25,6 +34,7 @@
                 <div class="text-danger"> {{ $errors->first('employee_id') }}</div>
             @endif
         </div>
+        <div class="col-sm-3"></div>
     </div>
 
     <div class="form-group row mb-2">
@@ -36,6 +46,7 @@
                 <div class="text-danger"> {{ $errors->first('member_id') }}</div>
             @endif
         </div>
+        <div class="col-sm-3"></div>
     </div>
 
     <div class="form-group row mb-2">
@@ -47,22 +58,23 @@
                 <div class="text-danger"> {{ $errors->first('order_date') }}</div>
             @endif
         </div>
+        <div class="col-sm-3"></div>
     </div>
 
-    {{-- รายการสินค้า --}}
+    {{-- Items --}}
     <div id="items-wrapper">
         {{-- item #1 --}}
         <div class="order-item-block" data-index="0">
             <div class="form-group row mb-2">
-                <label class="col-sm-2"> Item 1 </label>
+                <label class="col-sm-2"> Item <span class="item-number">1</span> </label>
                 <div class="col-sm-7">
                     {{-- Click to pick (non-typable) --}}
-                    <a href="#" 
-                    class="form-control pick-item text-start" 
-                    id="pick-display-0" 
-                    data-target-idx="0" 
-                    style="text-decoration: none; cursor: pointer;">
-                    {{ old('items.0.item_id') ? 'Selected (ID: '.old('items.0.item_id').')' : 'Click to choose…' }}
+                    <a href="#"
+                       class="form-control pick-item text-start"
+                       id="pick-display-0"
+                       data-target-idx="0"
+                       style="text-decoration: none; cursor: pointer;">
+                       {{ old('items.0.item_id') ? 'Selected (ID: '.old('items.0.item_id').')' : 'Click to choose…' }}
                     </a>
 
                     {{-- Hidden field actually submitted --}}
@@ -73,6 +85,13 @@
                             <div class="text-danger">{{ $msg }}</div>
                         @endforeach
                     @endif
+                </div>
+
+                {{-- Right blank column: center the Remove button horizontally (and vertically in this row) --}}
+                <div class="col-sm-3 d-flex align-items-center justify-content-center">
+                    <button type="button" class="btn btn-outline-danger btn-sm btn-remove-item" data-remove-idx="0">
+                        Remove
+                    </button>
                 </div>
             </div>
 
@@ -87,7 +106,9 @@
                         @endforeach
                     @endif
                 </div>
+                <div class="col-sm-3"></div>
             </div>
+
             <hr>
         </div>
     </div>
@@ -95,6 +116,8 @@
     <div class="row mb-3">
         <div class="col-sm-2"></div>
         <div class="col-sm-7 text-end">
+            {{-- Swapped: show cap text first, then button on the right --}}
+            <small class="text-muted me-2 align-middle">Max 10 items</small>
             <button type="button" id="btn-add-item" class="btn btn-primary">
                 Add more item
             </button>
@@ -173,103 +196,198 @@
 @endsection
 
 @section('js_before')
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const wrapper  = document.getElementById('items-wrapper');
-    const btnAdd   = document.getElementById('btn-add-item');
-    const maxItems = 10;
+    {{-- SweetAlert renderer (required for Swal.fire) --}}
+    @include('sweetalert::alert')
 
-    // === Modal setup ===
-    const menuModalEl = document.getElementById('menuPickerModal');
-    const menuModal   = new bootstrap.Modal(menuModalEl);
-    let activeIndex   = null; // which item block to fill
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const wrapper  = document.getElementById('items-wrapper');
+        const btnAdd   = document.getElementById('btn-add-item');
+        const maxItems = 10;
 
-    // open modal when clicking the pseudo-field
-    function attachOpenModalEvents(scope) {
-        scope.querySelectorAll('.pick-item').forEach(a => {
-            a.addEventListener('click', function (ev) {
-                ev.preventDefault();
-                activeIndex = this.dataset.targetIdx; // "0", "1", ...
-                menuModal.show();
+        // Modal setup
+        const menuModalEl = document.getElementById('menuPickerModal');
+        const menuModal   = new bootstrap.Modal(menuModalEl);
+        let activeIndex   = null;
+
+        // Focus search on show
+        menuModalEl.addEventListener('shown.bs.modal', function () {
+            const f = document.getElementById('menuFilter');
+            if (f) f.focus();
+        });
+
+        // Open modal when clicking pseudo-field
+        function attachOpenModalEvents(scope) {
+            scope.querySelectorAll('.pick-item').forEach(a => {
+                a.addEventListener('click', function (ev) {
+                    ev.preventDefault();
+                    activeIndex = this.dataset.targetIdx;
+                    menuModal.show();
+                });
             });
-        });
-    }
-    attachOpenModalEvents(wrapper);
-
-    // Handle picking an item from the modal
-    menuModalEl.addEventListener('click', function (e) {
-        const btn = e.target.closest('.btn-pick-item');
-        if (!btn || activeIndex === null) return;
-
-        const id   = btn.dataset.itemId;
-        const name = btn.dataset.itemName;
-
-        const hidden = document.getElementById(`item-id-${activeIndex}`);
-        const disp   = document.getElementById(`pick-display-${activeIndex}`);
-        if (hidden && disp) {
-            hidden.value = id; // submit value
-            disp.textContent = `${name} (ID: ${id})`; // show selection
-            disp.classList.add('text-body');
         }
-        activeIndex = null;
-        menuModal.hide();
-    });
+        attachOpenModalEvents(wrapper);
 
-    // Simple client-side filter inside modal
-    const filterInput = document.getElementById('menuFilter');
-    const tableBody   = document.querySelector('#menuTable tbody');
-    filterInput.addEventListener('input', function () {
-        const q = this.value.toLowerCase();
-        tableBody.querySelectorAll('tr').forEach(tr => {
-            const text = tr.innerText.toLowerCase();
-            tr.style.display = text.includes(q) ? '' : 'none';
-        });
-    });
+        // Duplicate check
+        function isDuplicateItem(itemId, targetIdx) {
+            return Array.from(document.querySelectorAll('input[id^="item-id-"]'))
+                .some(inp => inp.value && inp.value === itemId && inp.id !== `item-id-${targetIdx}`);
+        }
 
-    // === Add more item blocks ===
-    if (btnAdd) {
-        btnAdd.addEventListener('click', function (e) {
-            e.preventDefault();
-            const count = wrapper.querySelectorAll('.order-item-block').length;
-            if (count >= maxItems) {
-                alert('ไม่สามารถเพิ่มได้เกิน 10 รายการ กรุณาสร้าง Order ใหม่');
+        // Renumber after add/remove
+        function renumberItems() {
+            wrapper.querySelectorAll('.order-item-block').forEach((block, i) => {
+                block.dataset.index = i;
+                const numberSpan = block.querySelector('.item-number');
+                if (numberSpan) numberSpan.textContent = i + 1;
+
+                const pick = block.querySelector('.pick-item');
+                if (pick) {
+                    pick.id = `pick-display-${i}`;
+                    pick.dataset.targetIdx = `${i}`;
+                }
+                const hidden = block.querySelector('input[type="hidden"][id^="item-id-"]');
+                if (hidden) {
+                    hidden.id = `item-id-${i}`;
+                    hidden.name = `items[${i}][item_id]`;
+                }
+                const qty = block.querySelector('input[type="number"][name^="items"][name$="[quantity]"]');
+                if (qty) qty.name = `items[${i}][quantity]`;
+
+                const btnRemove = block.querySelector('.btn-remove-item');
+                if (btnRemove) btnRemove.dataset.removeIdx = `${i}`;
+            });
+        }
+
+        // Pick item
+        menuModalEl.addEventListener('click', function (e) {
+            const btn = e.target.closest('.btn-pick-item');
+            if (!btn || activeIndex === null) return;
+
+            const id   = btn.dataset.itemId;
+            const name = btn.dataset.itemName;
+
+            if (isDuplicateItem(id, activeIndex)) {
+                if (window.Swal) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Duplicate item',
+                        text: 'This item is already in the order.',
+                        toast: true,
+                        position: 'top-end',
+                        timer: 2200,
+                        showConfirmButton: false
+                    });
+                }
                 return;
             }
 
-            const idx = count;
-            const number = idx + 1;
-
-            const block = document.createElement('div');
-            block.className = 'order-item-block';
-            block.dataset.index = idx;
-            block.innerHTML = `
-                <div class="form-group row mb-2">
-                    <label class="col-sm-2"> Item ${number} </label>
-                    <div class="col-sm-7">
-                        <a href="#" 
-                        class="form-control pick-item text-start" 
-                        id="pick-display-${idx}" 
-                        data-target-idx="${idx}" 
-                        style="text-decoration: none; cursor: pointer;">
-                        Click to choose…
-                        </a>
-                        <input type="hidden" name="items[${idx}][item_id]" id="item-id-${idx}" required>
-                    </div>
-                </div>
-                <div class="form-group row mb-2">
-                    <label class="col-sm-2"> Quantity </label>
-                    <div class="col-sm-7">
-                        <input type="number" class="form-control"
-                            name="items[${idx}][quantity]" min="1"
-                            placeholder="Quantity" required>
-                    </div>
-                </div>
-                <hr>
-            `;
-            wrapper.appendChild(block);
-            attachOpenModalEvents(block); // bind for the new anchor
+            const hidden = document.getElementById(`item-id-${activeIndex}`);
+            const disp   = document.getElementById(`pick-display-${activeIndex}`);
+            if (hidden && disp) {
+                hidden.value = id;
+                disp.textContent = `${name} (ID: ${id})`;
+                disp.classList.add('text-body');
+            }
+            activeIndex = null;
+            menuModal.hide();
         });
-    }
-});
-</script>
+
+        // Filter
+        const filterInput = document.getElementById('menuFilter');
+        const tableBody   = document.querySelector('#menuTable tbody');
+        filterInput.addEventListener('input', function () {
+            const q = this.value.toLowerCase();
+            tableBody.querySelectorAll('tr').forEach(tr => {
+                const text = tr.innerText.toLowerCase();
+                tr.style.display = text.includes(q) ? '' : 'none';
+            });
+        });
+
+        // Add item
+        if (btnAdd) {
+            btnAdd.addEventListener('click', function (e) {
+                e.preventDefault();
+                const count = wrapper.querySelectorAll('.order-item-block').length;
+                if (count >= maxItems) {
+                    if (window.Swal) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Order creation limit',
+                            text: 'You can add up to 10 items per order. Please create a new order.',
+                        });
+                    } else {
+                        alert('You can add up to 10 items per order. Please create a new order.');
+                    }
+                    return;
+                }
+
+                const idx = count;
+                const number = idx + 1;
+
+                const block = document.createElement('div');
+                block.className = 'order-item-block';
+                block.dataset.index = idx;
+                block.innerHTML = `
+                    <div class="form-group row mb-2">
+                        <label class="col-sm-2"> Item <span class="item-number">${number}</span> </label>
+                        <div class="col-sm-7">
+                            <a href="#"
+                               class="form-control pick-item text-start"
+                               id="pick-display-${idx}"
+                               data-target-idx="${idx}"
+                               style="text-decoration: none; cursor: pointer;">
+                               Click to choose…
+                            </a>
+                            <input type="hidden" name="items[${idx}][item_id]" id="item-id-${idx}" required>
+                        </div>
+                        <div class="col-sm-3 d-flex align-items-center justify-content-center">
+                            <button type="button" class="btn btn-outline-danger btn-sm btn-remove-item" data-remove-idx="${idx}">
+                                Remove
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-2">
+                        <label class="col-sm-2"> Quantity </label>
+                        <div class="col-sm-7">
+                            <input type="number" class="form-control"
+                                   name="items[${idx}][quantity]" min="1"
+                                   placeholder="Quantity" required>
+                        </div>
+                        <div class="col-sm-3"></div>
+                    </div>
+                    <hr>
+                `;
+                wrapper.appendChild(block);
+                attachOpenModalEvents(block);
+            });
+        }
+
+        // Remove item (keep at least one row)
+        wrapper.addEventListener('click', function (e) {
+            const btn = e.target.closest('.btn-remove-item');
+            if (!btn) return;
+            const blocks = wrapper.querySelectorAll('.order-item-block');
+            if (blocks.length <= 1) {
+                if (window.Swal) {
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Minimum items',
+                        text: 'At least one item is required in an order.',
+                        toast: true,
+                        position: 'top-end',
+                        timer: 2200,
+                        showConfirmButton: false
+                    });
+                }
+                return;
+            }
+            const block = btn.closest('.order-item-block');
+            if (block) {
+                block.remove();
+                renumberItems();
+            }
+        });
+    });
+    </script>
 @endsection

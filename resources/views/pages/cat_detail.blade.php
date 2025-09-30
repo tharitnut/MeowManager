@@ -4,6 +4,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
     body { font-family: 'Kodchasan', sans-serif; background-color: #fff8da; }
+
+    .btn-coffee {
+        background-color: #FFDD72;
+        border-color: #FFDD72;
+        color: #6b4226;
+        transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+    }
+
+    .btn-coffee:hover,
+    .btn-coffee:focus {
+        background-color: #6b4226;
+        border-color: #6b4226;
+        color: #fff8da;
+    }
+
 </style>
 @endsection
 
@@ -24,7 +39,7 @@
             <p class="fs-4 mb-2"><strong>Age:</strong> {{ $age }}</p>
             <p class="fs-4 mb-4"><strong>Breed:</strong> {{ $breed }}</p>
 
-            <a href="{{ url('/cat_page') }}" class="btn btn-outline-primary rounded-pill px-4 py-2 fs-5">
+            <a href="{{ url('/cat_page') }}" class="btn btn-coffee rounded-pill px-4 py-2 fs-5">
                 ← Back to Cats
             </a>
         </div>

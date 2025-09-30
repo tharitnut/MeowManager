@@ -8,6 +8,7 @@ use App\Models\MenuItemModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class OrdersController extends Controller
 {
@@ -87,6 +88,7 @@ class OrdersController extends Controller
             $order->save();
         });
 
+        Alert::success('Order Create Successfully');
         return redirect('/orders');
     } catch (\Exception $e) {
         // return response()->json(['error' => $e->getMessage()], 500); // สำหรับ debug
