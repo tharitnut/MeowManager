@@ -50,7 +50,9 @@ Route::middleware('auth')->group(function () {
 
     // NEW: profile route for all roles
     Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
+    Route::get('/member/profile', [MemberController::class, 'detail'])->name('member.detail');
 });
+
 
 /*
 |--------------------------------------------------------------------------

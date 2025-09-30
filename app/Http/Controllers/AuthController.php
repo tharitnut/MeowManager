@@ -72,7 +72,7 @@ class AuthController extends Controller
 
         // Landing per role
         if ($user->role === 'Member') {
-            return redirect()->intended('/profile'); // Members land on Profile
+            return redirect()->route('member.detail');
         }
 
         // Employees need an employee row
@@ -132,7 +132,7 @@ class AuthController extends Controller
 
     private function buildPhotoUrl(string $role, ?EmployeeModel $emp, ?MemberModel $mem): string
     {
-        $default = asset('images/default-avatar.png');
+        $default = asset('images/default_avatar.png');
 
         // pick a relative DB path based on role
         $path = null;

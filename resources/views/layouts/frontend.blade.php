@@ -19,9 +19,7 @@
     }
 
     .navbar {
-      background-color: #6b4226; /* coffee brown */
-      padding-left: 40px;      
-      padding-right: 40px;     
+      background-color: #6b4226; /* coffee brown */  
     }
 
     .navbar-brand {

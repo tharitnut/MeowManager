@@ -3,60 +3,64 @@
 @section('css_before')
 <link href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  /* Global theme */
-  body { font-family: 'Kodchasan', sans-serif; background-color: #fff8da; }
+  /* Global theme (keep your style) */
+  body { font-family: 'Kodchasan', sans-serif; background-color: #fff8da; color:#2c2c2c; }
 
-  /* ===== Navbar: center like public pages ===== */
-  /* Make the bar span full width and center its inner container */
-  header .navbar,
-  nav.navbar {
-    width: 100%;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-  /* Center the inner container and match the public max width */
-  /* .navbar > .container,
-  .navbar > .container-fluid,
-  header .navbar > .container,
-  header .navbar > .container-fluid {
-    margin-left: auto !important;
-    margin-right: auto !important;
-    max-width: 1200px;              match your public pages
-    padding-left: 16px;
-    padding-right: 16px;
-  } */
-  /* Kill any auth layout left offset that nudges the bar to the right */
-  header, .navbar {
-    left: auto !important;
-  }
-  .auth-wrap, .page-content, .content, body {
-    margin-left: 0 !important;
-    padding-left: 0 !important;
-  }
+  /* Navbar alignment fixes (as you had) */
+  header .navbar, nav.navbar { width: 100%; margin-left: 0 !important; margin-right: 0 !important; }
+  header, .navbar { left: auto !important; }
+  .auth-wrap, .page-content, .content, body { margin-left: 0 !important; padding-left: 0 !important; }
 
   /* Card */
-  .card { border-radius: 20px; border: none; overflow: hidden;
-          box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
-  .card-body h3 { color: #2c5b3f; font-weight: 700; letter-spacing: .5px; }
-  .form-label { color: #5c4630; font-weight: 600; }
-
-  /* Inputs */
-  .form-control {
-    height: 46px; border-radius: 30px; padding: 0 16px;
-    border: 1px solid #ddd; background: #fff;
+  .profile-card {
+    background: #fffef5; /* updated from white */
+    border: none;
+    border-radius: 22px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   }
-  .form-control:focus {
-    border-color: #1940ff; box-shadow: 0 0 0 .2rem rgba(25,64,255,.15);
+  .profile-card .card-body { padding: 48px 28px; }
+
+  /* Avatar ring like the mock */
+  .avatar-wrap { display:flex; justify-content:center; }
+  .avatar {
+    width: 190px; height: 190px; border-radius: 50%; object-fit: cover;
+    border: 10px solid #f3f6fa;
+    box-shadow: 0 6px 16px rgba(0,0,0,.06);
   }
-  .is-invalid { border-color: #dc3545; }
 
-  /* Buttons */
+  /* Name */
+  .display-name {
+    font-weight: 700; font-size: clamp(24px, 3.2vw, 36px);
+    color:#2c5b3f; letter-spacing:.4px; text-align:center; margin: 18px 0 10px;
+  }
 
-  .btn-warning { background-color: #ffc107; border-color: #ffc107; }
-  .btn-warning:hover { filter: brightness(0.95); }
+  /* Badges row (role chips) */
+  .role-row { display:flex; gap:10px; justify-content:center; margin-bottom: 18px; }
+  .role-badge {
+    display:inline-block; padding:8px 14px; border-radius:999px; font-weight:700; font-size:14px;
+    color:#fff; background:#17a2b8;
+  }
+  .role-badge.member { background:#2c5b3f; }      /* deep green from your palette */
+  .role-badge.admin  { background:#6c757d; }
+  .role-badge.staff  { background:#0d6efd; }
 
-  /* Container spacing */
-  .auth-wrap { margin-top: 56px; margin-bottom: 56px; }
+  /* Meta lines (username/email) */
+  .meta { text-align:center; color:#5c4630; }
+  .meta .label { color:#6b6b6b; font-weight:700; }
+  .meta p { margin: 6px 0; }
+
+  /* Points chip (optional) */
+  .points-chip {
+    display:inline-block; margin-top:10px; padding:8px 14px; border-radius:999px;
+    background:#eaf7ef; color:#2c5b3f; font-weight:700;
+  }
+
+  /* Buttons row */
+  .actions { margin-top: 20px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+
+  /* Keep your button look */
+  .btn-warning { background-color:#ffc107; border-color:#ffc107; }
+  .btn-warning:hover { filter: brightness(.95); }
 </style>
 @endsection
 
@@ -64,46 +68,55 @@
 @endsection
 
 @section('showProduct')
+
 <div class="container auth-wrap">
-  <div class="row justify-content-center">
-    <div class="col-12 mb-4">
-      <h2 class="menu-title" style="font-size:5rem; font-weight:700; letter-spacing:2px; text-align:center;">Login</h2>
-    </div>
+  <div class="row justify-content-center mt-5">
+    <div class="col-12 col-md-10 col-lg-8 col-xl-7">
+      <div class="card profile-card">
+        <div class="card-body">
 
-    <div class="col-12 col-sm-8 col-md-6 col-lg-5">
-      <div class="card">
-        <div class="card-body p-4">
-          <h3 class="mb-3 text-center">Welcome back</h3>
+          <!-- Avatar -->
+          <div class="avatar-wrap">
+            <img class="avatar" src="{{ $photoUrl }}"
+                 alt="Profile Photo"
+                 onerror="this.onerror=null;this.src='{{ asset('images/default_avatar.png') }}'">
+          </div>
 
-          <form action="/login" method="post">
-            @csrf
-            <div class="mb-3">
-              <label class="form-label">Username</label>
-              <input type="text" class="form-control @error('username') is-invalid @enderror"
-                     name="username" value="{{ old('username') }}" required>
-              @error('username') <div class="invalid-feedback">{{ $message }}</div> @enderror
-            </div>
+          <!-- Name -->
+          <h2 class="display-name">{{ $displayName }}</h2>
 
-            <div class="mb-3">
-              <label class="form-label">Password</label>
-              <input type="password" class="form-control @error('password') is-invalid @enderror"
-                     name="password" required>
-              @error('password') <div class="invalid-feedback">{{ $message }}</div> @enderror
-            </div>
+          <!-- Role badges (Member only by default, but easy to extend) -->
+          <div class="role-row">
+            <span class="role-badge member">Member</span>
+            {{-- If you ever want to show extra roles, just toggle these: --}}
+            {{-- <span class="role-badge staff">Staff</span> --}}
+            {{-- <span class="role-badge admin">Admin</span> --}}
+          </div>
 
-            <button class="btn btn-warning w-100" style="border-radius: 30px; padding: 10px 20px; font-weight: 600;">Login</button>
-          </form>
+          <!-- Meta -->
+          <div class="meta">
+            <p><span class="label">Username:</span> {{ $username }}</p>
+            <p><span class="label">Email:</span> {{ $email }}</p>
+            @isset($points)
+              <div class="points-chip">Points: {{ $points }}</div>
+            @endisset
+          </div>
 
-          @if ($errors->has('username') && !old('username'))
-            <div class="alert alert-danger mt-3">
-              {{ $errors->first('username') }}
-            </div>
-          @endif
+          <!-- Actions -->
+          <div class="actions">
+            {{-- add more actions if you need; kept minimal like the mock --}}
+            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+              @csrf
+              <button type="submit" class="btn btn-danger btn-sm">Logout</button>
+            </form>
+          </div>
+
         </div>
       </div>
     </div>
   </div>
 </div>
+
 @endsection
 
 @section('footer')

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class MemberController extends Controller
@@ -193,5 +194,26 @@ class MemberController extends Controller
         }
 
         return null;
+    }
+
+    public function detail(Request $request)
+    {
+        $user = Auth::user(); // from 'web' (we're under auth middleware)
+        // load tbl_members by FK
+        $member = MemberModel::where('user_id', $user->user_id)->first();
+
+        $displayName = $member
+            ? trim(($member->first_name ?? '').' '.($member->last_name ?? ''))
+            : $user->username;
+
+        return view('pages.member_detail', [
+            'displayName' => $displayName,
+            'username'    => $user->username,
+            'email'       => $member->email ?? '-',
+            'points'      => $member->point ?? 0,
+            'photoUrl'    => ($member && $member->member_pic)
+                ? asset('storage/'.$member->member_pic)
+                : asset('images/default_avatar.png'),
+        ]);
     }
 }
