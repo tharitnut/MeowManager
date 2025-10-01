@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CatModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -28,6 +29,7 @@ class DashboardController extends Controller
 
         $membersCount   = MemberModel::count();
         $employeesCount = EmployeeModel::count();
+        $catsCount = CatModel::count();
 
         // ====== Top Seller (เดือนนี้) ======
         $topSeller = OrderDetailModel::select('tbl_order_details.item_id', DB::raw('SUM(tbl_order_details.quantity) AS total_qty'))
@@ -87,6 +89,7 @@ class DashboardController extends Controller
             'totalRevenue',
             'ordersToday',
             'membersCount',
+            'catsCount',
             'employeesCount',
             'topSeller',
             'topSellerItem',

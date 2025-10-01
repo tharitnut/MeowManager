@@ -60,6 +60,15 @@
         </div>
     </div>
 
+    <div class="col-md-2 mb-3 d-flex">
+        <div class="card text-center h-100 flex-fill">
+            <div class="card-body d-flex align-items-center justify-content-center flex-column">
+                <h6>Total Cats</h6>
+                <h3>{{ number_format($catsCount) }}</h3>
+            </div>
+        </div>
+    </div>
+
     <div class="col-md-3 mb-3 d-flex">
     <div class="card text-center h-100 flex-fill">
         <div class="card-body d-flex align-items-center justify-content-center flex-column">
