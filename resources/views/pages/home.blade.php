@@ -23,7 +23,7 @@
   /* Hero */
   .hero {
     position:relative;
-    overflow:hidden;
+    overflow:visible;             /* ⬅️ allow the circle to be fully visible */
     background:#fff8da;
     padding:96px 0 40px;
   }
@@ -40,29 +40,49 @@
     font-size:1.1rem;
   }
 
+  /* --- Circle/Blob fix (only this part changed) --- */
   .hero-blob {
-    position:absolute;
-    right:-12vw;
-    top:-10vw;
-    width:48vw;
-    height:48vw;
-    background:radial-gradient(ellipse at 30% 30%, #7fcdd7 0%, #9fe1e8 55%, transparent 56%);
-    border-radius:50%;
-    filter:blur(2px);
-    opacity:.25;
-    pointer-events:none;
+    position: absolute;
+    left: 72%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(420px, 50vw, 680px);   /* bigger, but responsive */
+    height: clamp(420px, 50vw, 680px);
+    background: radial-gradient(
+      ellipse at 30% 30%,
+      #B07A3C 0%,   /* darker light-brown core */
+      #E0C8A5 55%,  /* slightly deeper outer brown */
+      transparent 56%
+    );
+    border-radius: 50%;
+    filter: blur(2px);
+    opacity: .25;
+    pointer-events: none;
+    z-index: 0;                         /* sits behind the circle/image */
   }
 
   .hero-circle {
     width:min(520px,90%);
     aspect-ratio:1/1;
-    background:#a7c957;
+    background:#FFDD72; /* theme accent */
     border-radius:50%;
     margin:0 auto;
     display:grid;
     place-items:center;
     position:relative;
+    z-index: 1;                          /* ensure it stays above the blob */
   }
+
+  /* Mobile/Tablet positioning so the blob stays full and centered */
+  @media (max-width: 992px) {
+    .hero-blob {
+      left: 50%;
+      top: 52%;
+      width: clamp(320px, 70vw, 560px);
+      height: clamp(320px, 70vw, 560px);
+    }
+  }
+  /* --- end circle fix --- */
 
   .hero-circle img {
     width:82%;

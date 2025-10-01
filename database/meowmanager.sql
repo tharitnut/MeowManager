@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2025 at 02:58 PM
+-- Generation Time: Oct 01, 2025 at 07:53 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,7 +48,14 @@ INSERT INTO `tbl_cats` (`cat_id`, `cat_name`, `breed`, `age`, `health_status`, `
 (4, 'Bella', 'Scottish Fold', 6, 'Good', 'uploads/cat/QOf5hLjXQe7lKVyeDHeogLR7yGytqE4SBRCqfURz.jpg', '2025-09-17 21:02:52'),
 (5, 'Milo', 'Domestic Shorthair', 2, 'Good', 'uploads/cat/06i18AKnOfZF19IwODsCKOcRXg29UOOvzzYqkWPO.jpg', '2025-09-17 21:03:19'),
 (6, 'Smokey', 'British Shorthair', 1, 'Good', 'uploads/cat/QOmrFfbFi2cPY8Xf3bb9Mbpn3OQLeIZXJSRx7E1p.jpg', '2025-09-17 21:11:27'),
-(7, 'Cloudy', 'Persian', 1, 'Good', 'uploads/cat/sIKpZi9LMWYlK7TIvJgWd01G8NgXtQKHECHF5rvg.jpg', '2025-09-17 21:36:52');
+(7, 'Cloudy', 'Persian', 1, 'Good', 'uploads/cat/sIKpZi9LMWYlK7TIvJgWd01G8NgXtQKHECHF5rvg.jpg', '2025-09-17 21:36:52'),
+(8, 'Pudding', 'Domestic Shorthair', 2, 'Good', 'uploads/cat/yfhqQ7e78AaMOmOi51D4nnFGiku0yLlA76PpxlCO.jpg', '2025-10-01 05:39:50'),
+(9, 'OIIA', 'Munchkin', 4, 'Spin', 'uploads/cat/FVYAfFl134qscY5a1YUu9bSO13em75Apo1kFnRjG.jpg', '2025-10-01 05:40:57'),
+(10, 'Boss', 'Domestic Shorthair', 6, 'Drunk', 'uploads/cat/Q2FL851xrJKhVmiqHfBsJDW5OjYfXPMM8mT6t7iF.jpg', '2025-10-01 05:41:32'),
+(11, 'Latte', 'Siamese', 8, 'Good', 'uploads/cat/003QNJ22mxkjKZ2a7VAZ3hRHIzJF9LEs1TaYQQ6L.jpg', '2025-10-01 05:41:59'),
+(12, 'Mochi', 'Domestic Shorthair', 1, 'Hit?', 'uploads/cat/HE8D2JJEb6ThXQWE7NWlNuu1yNTnfuQY4Hw9FNEx.jpg', '2025-10-01 05:42:40'),
+(13, 'Martini', 'Domestic Shorthair', 7, 'Sit', 'uploads/cat/41W8B6cAEkR1K2XLWERMARE4IodebfEiYm9xukuk.jpg', '2025-10-01 05:43:11'),
+(14, 'Marmalade', 'Domestic Shorthair', 2, 'Good', 'uploads/cat/o6oWChDfJBXiZFPajTZm32edM9JUVXbo2ajSEWx5.jpg', '2025-10-01 05:43:34');
 
 -- --------------------------------------------------------
 
@@ -76,12 +83,12 @@ CREATE TABLE `tbl_employees` (
 --
 
 INSERT INTO `tbl_employees` (`employee_id`, `user_id`, `first_name`, `last_name`, `nickname`, `telephone`, `email`, `birth_date`, `hire_date`, `position`, `employee_pic`, `timestamp`) VALUES
-(1, 1, 'John', 'Doe', 'Johnny', '0812345678', 'john.doe@example.com', '1990-01-15', '2023-09-01', 'Admin', 'uploads/employee/4PXFmAWz2OFUq4HvQ3YiHuB1bGQb7aJt5gv00Ok7.jpg', '2025-09-17 20:29:15'),
-(2, 2, 'Bharat', 'Kumar', 'B', '0921112222', 'bharat.k@example.com', '1988-11-05', '2022-01-15', 'Staff', 'uploads/employee/88fSfTE7bWMt6pkgjRHc4j8fdLeGkcWpEiXsGALU.jpg', '2025-09-17 20:30:05'),
-(3, 3, 'Alice', 'Smith', 'Ali', '0894567890', 'alice.smith@example.com', '1995-06-22', '2024-03-10', 'Staff', 'uploads/employee/OzUfG2T7IYqzlFJ7XGN368hhVRQjYU4BnDZegeL4.jpg', '2025-09-17 20:30:51'),
-(4, 4, 'Yuki', 'Chan', 'Yuu', '0857776666', 'yuki.chan@example.com', '1993-12-18', '2023-08-10', 'Admin', 'uploads/employee/qg02RuRLFdHKWyjt48u7sO2ZWvcqBOupSBcjQjwD.jpg', '2025-09-17 20:31:43'),
-(5, 5, 'Linh', 'Tran', 'Lin', '0833334444', 'linh.tran@example.com', '1992-03-09', '2023-01-05', 'Staff', 'uploads/employee/nbPeUtKpHNIeDE6Ttes1zAROb6EWzNaP4ouCayaZ.jpg', '2025-09-17 20:32:23'),
-(6, 6, 'Kevin', 'Miller', 'Kev', '0879998888', 'kevin.miller@example.com', '1998-09-30', '2024-06-20', 'Staff', 'uploads/employee/zYh4gU8HgKs3nHUNTEIO9Ln7E7Ku0uyEegptEExa.jpg', '2025-09-17 20:32:59');
+(1, 1, 'John', 'Doe', 'Johnny', '0812345678', 'john.doe@example.com', '1990-01-15', '2023-09-01', 'Admin', 'uploads/employee/4561f13e-0756-442e-b464-4b5a2ddb430d.jpg', '2025-09-17 20:29:15'),
+(2, 2, 'Bharat', 'Kumar', 'B', '0921112222', 'bharat.k@example.com', '1988-11-05', '2022-01-15', 'Staff', 'uploads/employee/c003ebba-a0ab-42ad-ab07-60866eec2460.jpg', '2025-09-17 20:30:05'),
+(3, 3, 'Alice', 'Smith', 'Ali', '0894567890', 'alice.smith@example.com', '1995-06-22', '2024-03-10', 'Staff', 'uploads/employee/08b7fcdf-19cd-48d6-8ff8-1c067beede83.jpg', '2025-09-17 20:30:51'),
+(4, 4, 'Yuki', 'Chan', 'Yuu', '0857776666', 'yuki.chan@example.com', '1993-12-18', '2023-08-10', 'Admin', 'uploads/employee/233f95c7-5785-42a0-ad8d-e47905a9bf36.jpg', '2025-09-17 20:31:43'),
+(5, 5, 'Linh', 'Tran', 'Lin', '0833334444', 'linh.tran@example.com', '1992-03-09', '2023-01-05', 'Staff', 'uploads/employee/b97e794a-146e-43c8-89e3-af525d8bf77b.jpg', '2025-09-17 20:32:23'),
+(6, 6, 'Kevin', 'Miller', 'Kev', '0879998888', 'kevin.miller@example.com', '1998-09-30', '2024-06-20', 'Staff', 'uploads/employee/ee4f8828-6425-4203-8024-88395b81b8c2.jpg', '2025-09-17 20:32:59');
 
 -- --------------------------------------------------------
 
@@ -108,13 +115,13 @@ CREATE TABLE `tbl_members` (
 --
 
 INSERT INTO `tbl_members` (`member_id`, `user_id`, `first_name`, `last_name`, `telephone`, `email`, `birth_date`, `point`, `register_date`, `member_pic`, `timestamp`) VALUES
-(1, 7, 'Sunisa', 'Wongchai', '0815559090', 'sunisa.w@example.com', '1997-04-12', 0, '2024-09-10', 'uploads/member/6HWytr59k9sXHQYYT2cYtVbHWy4NGnbMjmxOgiks.jpg', '2025-09-17 20:39:00'),
-(2, 8, 'Krit', 'Tanan', '0891234567', 'krit.tanan@example.com', '2001-11-03', 0, '2023-06-22', 'uploads/member/LGqJfqkgj9k4lFxr4GThCqctDsCKpdpalrDmNLYN.jpg', '2025-09-17 20:39:32'),
-(3, 9, 'Mimi', 'Chen', '0822324876', 'mimi.chen@example.com', '1995-02-17', 0, '2024-02-01', 'uploads/member/oWbVwPMgLvZCFV9YOfeWKFTAICgTq9NTi5zMG8ln.jpg', '2025-09-17 20:40:18'),
-(4, 10, 'Arjun', 'Mehta', '0867774321', 'arjun.mehta@example.com', '1992-07-29', 0, '2024-08-12', 'uploads/member/fhuFuGNDJZ4Zb2yurVq1t5xkBpOlCie1inp3E4vs.jpg', '2025-09-17 20:40:51'),
-(5, 11, 'Lilly', 'Rose', '0808889999', 'lilly.rose@example.com', '1999-05-14', 0, '2023-05-20', 'uploads/member/MboabCyDWk4TL9Dn5Im9Z9p4062Gs1Tij0Wf0kvH.jpg', '2025-09-17 20:41:25'),
-(6, 12, 'Max', 'Anderson', '0873216540', 'max.anderson@example.com', '1990-10-08', 0, '2024-01-01', 'uploads/member/cF9gKzH4dL986vlChy1Gpn4LH71VKz1Told522eq.jpg', '2025-09-17 20:41:57'),
-(7, 13, 'Nattaporn', 'Kittisak', '0845551212', 'nattaporn.k@example.com', '1996-09-25', 0, '2024-09-01', 'uploads/member/5LQTBt7i3QiQFvuUROkC9EB3M7iGzpcDWkfBMrpQ.jpg', '2025-09-17 20:43:59');
+(1, 7, 'Sunisa', 'Wongchai', '0815559090', 'sunisa.w@example.com', '1997-04-12', 6, '2024-09-10', 'uploads/member/bd8133c0-5883-4f7b-bb20-7b62ae50e083.jpg', '2025-09-17 20:39:00'),
+(2, 8, 'Krit', 'Tanan', '0891234567', 'krit.tanan@example.com', '2001-11-03', 1, '2023-06-22', 'uploads/member/430b97b9-d311-480c-9159-274676915bf7.jpg', '2025-09-17 20:39:32'),
+(3, 9, 'Mimi', 'Chen', '0822324876', 'mimi.chen@example.com', '1995-02-17', 2, '2024-02-01', 'uploads/member/89c8fa56-f9c1-455a-adc4-39a206ff9adc.jpg', '2025-09-17 20:40:18'),
+(4, 10, 'Arjun', 'Mehta', '0867774321', 'arjun.mehta@example.com', '1992-07-29', 3, '2024-08-12', 'uploads/member/fhuFuGNDJZ4Zb2yurVq1t5xkBpOlCie1inp3E4vs.jpg', '2025-09-17 20:40:51'),
+(5, 11, 'Lilly', 'Rose', '0808889999', 'lilly.rose@example.com', '1999-05-14', 1, '2023-05-20', 'uploads/member/4698a9cb-0a5f-42ed-9a74-07124d139a23.jpg', '2025-09-17 20:41:25'),
+(6, 12, 'Max', 'Anderson', '0873216540', 'max.anderson@example.com', '1990-10-08', 9, '2024-01-01', 'uploads/member/3c9051e2-8c84-44a3-beaf-745e050907f2.jpg', '2025-09-17 20:41:57'),
+(7, 13, 'Nattaporn', 'Kittisak', '0845551212', 'nattaporn.k@example.com', '1996-09-25', 5, '2024-09-01', 'uploads/member/88fd33b6-292f-48e6-85f6-b20fd8131bbe.jpg', '2025-09-17 20:43:59');
 
 -- --------------------------------------------------------
 
@@ -184,13 +191,13 @@ CREATE TABLE `tbl_orders` (
 
 INSERT INTO `tbl_orders` (`order_id`, `member_id`, `employee_id`, `order_date`, `total_price`, `timestamp`) VALUES
 (1, 6, 4, '2025-09-18', 495.00, '2025-09-17 22:05:24'),
-(2, 4, 3, '2025-09-18', 455.00, '2025-09-17 23:43:33'),
-(3, 1, 1, '2025-09-18', 255.00, '2025-09-17 23:44:08'),
-(4, 3, 2, '2025-09-18', 420.00, '2025-09-17 23:54:37'),
-(6, 3, 5, '2025-09-18', 1235.00, '2025-09-18 00:14:43'),
-(7, 3, 3, '2025-09-19', 320.00, '2025-09-19 04:47:21'),
-(8, 2, 5, '2025-09-19', 225.00, '2025-09-19 04:50:00'),
-(9, 2, 3, '2025-09-19', 575.00, '2025-09-19 05:33:18');
+(2, 7, 6, '2025-09-28', 790.00, '2025-09-28 11:00:40'),
+(3, 2, 2, '2025-09-28', 1035.00, '2025-09-28 11:01:06'),
+(4, 5, 5, '2025-09-28', 85.00, '2025-09-28 11:01:14'),
+(5, 2, 1, '2025-09-28', 640.00, '2025-09-28 11:01:42'),
+(6, 3, 4, '2025-09-28', 1000.00, '2025-09-28 11:02:22'),
+(7, 7, 5, '2025-10-01', 575.00, '2025-09-30 18:43:22'),
+(8, 2, 1, '2025-10-01', 65.00, '2025-09-30 19:17:57');
 
 -- --------------------------------------------------------
 
@@ -215,16 +222,25 @@ INSERT INTO `tbl_order_details` (`order_detail_id`, `order_id`, `item_id`, `quan
 (1, 1, 3, 2, 65.00, '2025-09-17 22:05:24'),
 (2, 1, 5, 1, 140.00, '2025-09-17 22:05:24'),
 (3, 1, 11, 3, 75.00, '2025-09-17 22:05:24'),
-(4, 2, 24, 3, 95.00, '2025-09-17 23:43:33'),
-(5, 2, 16, 2, 85.00, '2025-09-17 23:43:33'),
-(6, 3, 1, 3, 85.00, '2025-09-17 23:44:08'),
-(7, 4, 11, 3, 140.00, '2025-09-17 23:54:37'),
-(8, 6, 3, 13, 95.00, '2025-09-18 00:14:43'),
-(9, 7, 21, 3, 70.00, '2025-09-19 04:47:21'),
-(10, 7, 2, 2, 55.00, '2025-09-19 04:47:21'),
-(11, 8, 5, 3, 75.00, '2025-09-19 04:50:00'),
-(12, 9, 9, 3, 160.00, '2025-09-19 05:33:18'),
-(13, 9, 3, 1, 95.00, '2025-09-19 05:33:18');
+(4, 2, 7, 3, 65.00, '2025-09-28 11:00:40'),
+(5, 2, 1, 2, 85.00, '2025-09-28 11:00:40'),
+(6, 2, 21, 2, 70.00, '2025-09-28 11:00:40'),
+(7, 2, 24, 3, 95.00, '2025-09-28 11:00:40'),
+(8, 3, 18, 3, 75.00, '2025-09-28 11:01:06'),
+(9, 3, 19, 2, 90.00, '2025-09-28 11:01:06'),
+(10, 3, 14, 4, 130.00, '2025-09-28 11:01:06'),
+(11, 3, 2, 2, 55.00, '2025-09-28 11:01:06'),
+(12, 4, 6, 1, 85.00, '2025-09-28 11:01:14'),
+(13, 5, 23, 2, 80.00, '2025-09-28 11:01:42'),
+(14, 5, 9, 3, 160.00, '2025-09-28 11:01:42'),
+(15, 6, 26, 3, 90.00, '2025-09-28 11:02:22'),
+(16, 6, 6, 2, 85.00, '2025-09-28 11:02:22'),
+(17, 6, 11, 4, 140.00, '2025-09-28 11:02:22'),
+(18, 7, 9, 2, 160.00, '2025-09-30 18:43:22'),
+(19, 7, 17, 1, 70.00, '2025-09-30 18:43:22'),
+(20, 7, 22, 2, 60.00, '2025-09-30 18:43:22'),
+(21, 7, 20, 1, 65.00, '2025-09-30 18:43:22'),
+(22, 8, 7, 1, 65.00, '2025-09-30 19:17:57');
 
 -- --------------------------------------------------------
 
@@ -238,6 +254,14 @@ CREATE TABLE `tbl_promotions` (
   `promotion_pic` varchar(255) NOT NULL COMMENT 'รูปภาพของโปรโมชั่น',
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'เวลาที่บันทึกข้อมูล\r\n(อัตโนมัติ)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_promotions`
+--
+
+INSERT INTO `tbl_promotions` (`promotion_id`, `promotion_detail`, `promotion_pic`, `timestamp`) VALUES
+(1, '🎉 รับฟรี! ขนมแมวเลีย 1 ซอง 🐟 (มูลค่า 23 บาท)\r\nเมื่อสั่ง 🥤 วนิลาครีมโซดา + 🍪 คุกกี้อุ้งมือแมว', 'uploads/promotion/p8nG9wK4HtQSn8BufbLXJJUmb2Bq7IthKJ2jlsVM.png', '2025-09-28 09:24:14'),
+(2, '⭐ สะสมแต้ม ⭐\r\n🐶🐱 สะสมครบ 10 แต้ม รับฟรี! เครื่องดื่ม 1 แก้ว 🥤🎁', 'uploads/promotion/MkfFvzOwHuw1kusW9SVqtYQKEKh1YajJrXhhR6DO.png', '2025-09-28 09:25:49');
 
 -- --------------------------------------------------------
 
@@ -272,13 +296,13 @@ CREATE TABLE `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`user_id`, `username`, `password`, `role`, `timestamp`) VALUES
-(1, 'jdoe', '$2y$10$Co4jG337v62OWK1FDVZwFOKzSXGjhsWMDtTfE72yLc5FJkwgeT0ZK', 'Employee', '2025-09-17 20:29:15'),
+(1, 'jdoe', '$2y$12$J5LnMBGaONP3.oOoJyso6ODu0Gtsk10/.bMF1GCg8IxlCNkY0twoS', 'Employee', '2025-09-17 20:29:15'),
 (2, 'bkumar', '$2y$10$kGNSzxh4FG9JKbSR/Hz5B.92YRR2sswsUduqLP1Okm7JrVtGyeiNq', 'Employee', '2025-09-17 20:30:05'),
 (3, 'asmith', '$2y$10$RSpdHB.Gv/mPcGiBxMkrS.YRxMMfrrUaI/JD6sUQfZSri/0tW.oNS', 'Employee', '2025-09-17 20:30:51'),
 (4, 'ychan', '$2y$10$/Dj0SBpzvbtfLjGygpdqguJVZh3ZUdd1fRAL/XKSNQChrumAfh.YK', 'Employee', '2025-09-17 20:31:43'),
 (5, 'ltran', '$2y$10$JYH5eLowOm9VWEYMz2sFJOAtVl6eabplIX2/vTYsg6Gisql5Bw5oW', 'Employee', '2025-09-17 20:32:23'),
-(6, 'kmiller', '$2y$10$2KcLctPSZZbUFTDCNv9bJOuWlDwGr4DUSGTug8y5D28EjPxRv1TJq', 'Employee', '2025-09-17 20:32:59'),
-(7, 'sunnyday', '$2y$10$OTEaXP3ipsMHZ3D1PTCISO2iBEtezThbDd9MEi/uL8RoGAi/xyAZG', 'Member', '2025-09-17 20:39:00'),
+(6, 'kmiller', '$2y$12$nyQvn5TJjoBIs/.ORb9UxernfnLXSmDGjcN2V5IKUc.1Q5DwWmVMq', 'Employee', '2025-09-17 20:32:59'),
+(7, 'sunnyday', '$2y$12$V1tC/e6PT6FxjkAif4G26.7F7c9P0HqXYikX6KXh2YMlRBfEXJM3K', 'Member', '2025-09-17 20:39:00'),
 (8, 'gamerx', '$2y$10$ZMnUqDonSrGfGkrImFqihOftalmOPdOFrbP6gtGFHM036ZTehDc/m', 'Member', '2025-09-17 20:39:32'),
 (9, 'mimi88', '$2y$10$R2WZ/SdTZpCiwYPJZA.oJu.NVdK0CzOj4J.l2uTNPqsDbiTm9L/Ti', 'Member', '2025-09-17 20:40:18'),
 (10, 'artlover', '$2y$10$5CDeQzQZuElq28sUSSzpeusXaX29frg45bvDSaBl2p5lxx5qZ2i9a', 'Member', '2025-09-17 20:40:51'),
@@ -362,7 +386,7 @@ ALTER TABLE `tbl_users`
 -- AUTO_INCREMENT for table `tbl_cats`
 --
 ALTER TABLE `tbl_cats`
-  MODIFY `cat_id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'ID ที่ถูกสร้างโดยอัตโนมัติ', AUTO_INCREMENT=8;
+  MODIFY `cat_id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'ID ที่ถูกสร้างโดยอัตโนมัติ', AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tbl_employees`
@@ -380,25 +404,25 @@ ALTER TABLE `tbl_members`
 -- AUTO_INCREMENT for table `tbl_menu_items`
 --
 ALTER TABLE `tbl_menu_items`
-  MODIFY `item_id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'ID ที่ถูกสร้างโดยอัตโนมัติ', AUTO_INCREMENT=128;
+  MODIFY `item_id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'ID ที่ถูกสร้างโดยอัตโนมัติ', AUTO_INCREMENT=127;
 
 --
 -- AUTO_INCREMENT for table `tbl_orders`
 --
 ALTER TABLE `tbl_orders`
-  MODIFY `order_id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'ID ที่ถูกสร้างโดยอัตโนมัติ', AUTO_INCREMENT=10;
+  MODIFY `order_id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'ID ที่ถูกสร้างโดยอัตโนมัติ', AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_order_details`
 --
 ALTER TABLE `tbl_order_details`
-  MODIFY `order_detail_id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'ID ที่ถูกสร้างโดยอัตโนมัติ', AUTO_INCREMENT=14;
+  MODIFY `order_detail_id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'ID ที่ถูกสร้างโดยอัตโนมัติ', AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `tbl_promotions`
 --
 ALTER TABLE `tbl_promotions`
-  MODIFY `promotion_id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'ID ที่ถูกสร้างโดย\r\nอัตโนมัติ';
+  MODIFY `promotion_id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'ID ที่ถูกสร้างโดย\r\nอัตโนมัติ', AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_promotion_usages`
