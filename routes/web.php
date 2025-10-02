@@ -60,8 +60,10 @@ Route::middleware('auth')->group(function () {
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth','allow:admin'])->group(function () {
-    Route::get('/user', [UserController::class, 'index']);
-    Route::delete('/user/remove/{user_id}', [UserController::class, 'remove']);
+    Route::get('/user', [UserController::class, 'index'])->name('users.index');
+    Route::delete('/user/remove/{user_id}', [UserController::class, 'remove'])->name('users.remove');
+    // (optional backward-compat, if your blade once used /users/remove/…)
+    Route::delete('/users/remove/{user_id}', [UserController::class, 'remove'])->name('users.remove.legacy');
 
     Route::get('/employee', [EmployeeController::class, 'index']);
     Route::get('/employee/adding', [EmployeeController::class, 'adding']);

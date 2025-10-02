@@ -166,7 +166,7 @@
 @section('sidebarMenu')
 @section('content')
 
-<h3> :: form Update Cat :: </h3>
+<h3> Form Update Cat </h3>
 
 <form action="/cat/{{ $cat_id }}" method="post" enctype="multipart/form-data">
     @csrf

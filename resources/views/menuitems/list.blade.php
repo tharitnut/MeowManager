@@ -217,7 +217,7 @@
         <tr class="table-info">
             <th width="5%" class="text-center">No.</th>
             <th width="35%">Menu Item</th>
-            <th width="15%">Category</th>
+            <th width="15%" class="text-center">Category</th>
             <th width="15%" class="text-center">Price</th>
             <th width="15%">Picture</th>
             <th width="7.5%" class="text-center">Edit</th>
@@ -232,7 +232,7 @@
             <td>
                 <b>{{ $row->item_name }}</b> <br>
             </td>
-            <td>{{ $row->category }}</td>
+            <td class="text-center">{{ $row->category }}</td>
             <td align="right">฿{{ number_format($row->item_price, 2) }}</td>
             <td align="center">
                 <img src=" {{ asset('storage/' . $row->item_pic) }}" width="100">

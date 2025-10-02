@@ -166,7 +166,7 @@
 @section('sidebarMenu')
 @section('content')
 
-<h3> :: form Update Promotion :: </h3>
+<h3> Form Update Promotion </h3>
 
 <form action="/promotion/{{ $promotion_id }}" method="post" enctype="multipart/form-data">
     @csrf

@@ -58,28 +58,26 @@
       backdrop-filter: saturate(140%) blur(8px);
       border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
     }
-    /* 3-zone header: left brand, centered title, right actions */
+    /* 3-zone header: left logo, centered title, right actions */
     .topbar-inner{
-      max-width: 1200px;
-      margin: 0 auto;
+      /* was: max-width: 1200px; margin: 0 auto; */
+      width: 100%;
+      max-width: none;        /* let it touch both edges */
+      margin: 0;
       height: 100%;
       padding: 0 16px;
       display: grid;
-      grid-template-columns: 1fr auto 1fr;
+      grid-template-columns: auto 1fr auto; /* left | center grows | right */
       align-items: center;
       gap: 12px;
     }
-    .topbar-left{ display:flex; align-items:center; gap:.6rem; }
-    .topbar-center{
-      justify-self: center;
-      font-weight: 700;
-      letter-spacing:.2px;
-      color: var(--text);
-    }
-    .topbar-right{
-      justify-self: end;
-      display:flex; align-items:center; gap:.5rem;
-    }
+    .topbar-left{ justify-self: start; display:flex; align-items:center; gap:.6rem; }
+    .topbar-center{ justify-self: center; text-align:center; font-weight:700; letter-spacing:.2px; color:var(--text); }
+    .topbar-right{ justify-self: end; display:flex; align-items:center; gap:.5rem; }
+
+    /* (optional) make the logo behave like a block so it hugs the edge cleanly */
+    .topbar-left img{ display:block; }
+
     .brand-badge{
       width: 28px; height: 28px; border-radius: 8px;
       background: #eff6ff; color:#3b82f6; font-weight:700;
@@ -245,9 +243,11 @@
   <header class="topbar">
     <div class="topbar-inner">
       <div class="topbar-left">
-        <button class="sidenav-toggle d-lg-none" id="btnNav" aria-label="Toggle navigation">☰</button>
-        <img src="{{ asset('images/MeowMoment_logo.png') }}" alt="MeowMoment Logo" 
-            style="height:60px; width:auto; margin-right:10px;">
+        <a href="{{ $dashUrl }}" class="d-inline-flex align-items-center" style="text-decoration:none">
+          <img src="{{ asset('images/MeowMoment_logo.png') }}" alt="MeowMoment Logo"
+              style="height:60px; width:auto;">
+        </a>
+        <button class="sidenav-toggle d-lg-none ms-2" id="btnNav" aria-label="Toggle navigation">☰</button>
       </div>
       <div class="topbar-center">MeowManager Back Office · Welcome {{ $who }}</div>
       <div class="topbar-right">

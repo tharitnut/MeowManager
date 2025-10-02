@@ -25,43 +25,58 @@ class UserController extends Controller
     }
 
     public function remove($user_id)
-    {
-        $user = UserModel::with(['employee', 'member'])->find($user_id);
+{
+    // Eager load to avoid N+1 and make checks easy
+    $user = UserModel::with(['employee', 'member'])->find($user_id);
 
-        if (!$user) {
-            Alert::error('User not found.');
-            return redirect('/users');
-        }
-
-        try {
-            DB::transaction(function () use ($user) {
-                // ถ้าเป็น Employee → ลบ employee + รูป
-                if ($user->role === 'Employee' && $user->employee) {
-                    if ($user->employee->employee_pic && Storage::disk('public')->exists($user->employee->employee_pic)) {
-                        Storage::disk('public')->delete($user->employee->employee_pic);
-                    }
-                    $user->employee->delete();
-                }
-
-                // ถ้าเป็น Member → ลบ member + รูป
-                if ($user->role === 'Member' && $user->member) {
-                    if ($user->member->member_pic && Storage::disk('public')->exists($user->member->member_pic)) {
-                        Storage::disk('public')->delete($user->member->member_pic);
-                    }
-                    $user->member->delete();
-                }
-
-                // สุดท้ายลบ user
-                $user->delete();
-            });
-
-            Alert::success('Delete Successfully');
-        } catch (\Exception $e) {
-            Alert::error('Error: ' . $e->getMessage());
-        }
-
+    if (!$user) {
+        Alert::error('User not found.');
         return redirect('/users');
     }
+
+    // Will we be deleting ourselves? (support both Auth and your session fallback)
+    $currentId = Auth::id() ?? session('login_user_id');
+    $deletingSelf = $currentId && (intval($currentId) === intval($user_id));
+
+    try {
+        DB::transaction(function () use ($user) {
+            // If role is Employee → remove employee + photo (if any)
+            if ($user->role === 'Employee' && $user->employee) {
+                if ($user->employee->employee_pic && Storage::disk('public')->exists($user->employee->employee_pic)) {
+                    Storage::disk('public')->delete($user->employee->employee_pic);
+                }
+                $user->employee->delete();
+            }
+
+            // If role is Member → remove member + photo (if any)
+            if ($user->role === 'Member' && $user->member) {
+                if ($user->member->member_pic && Storage::disk('public')->exists($user->member->member_pic)) {
+                    Storage::disk('public')->delete($user->member->member_pic);
+                }
+                $user->member->delete();
+            }
+
+            // Finally delete the user
+            $user->delete();
+        });
+
+        // If the deleted user is the current user, force logout and redirect to login
+        if ($deletingSelf) {
+            Auth::logout();
+            request()->session()->invalidate();
+            request()->session()->regenerateToken();
+            Alert::success('Your account has been deleted.');
+            return redirect('/login');
+        }
+
+        Alert::success('Delete Successfully');
+        return redirect('/user');
+
+    } catch (\Throwable $e) {
+        Alert::error('Error: '.$e->getMessage());
+        return redirect('/user');
+    }
+}
 
     public function profile()
     {
