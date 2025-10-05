@@ -52,7 +52,7 @@
     .topbar{
       position: sticky;
       top: 0;
-      z-index: 50;
+      z-index: 1050; /* raised so it stays above the drawer/backdrop */
       height: var(--topbar-h);
       background: color-mix(in srgb, var(--card) 85%, transparent);
       backdrop-filter: saturate(140%) blur(8px);
@@ -60,7 +60,6 @@
     }
     /* 3-zone header: left logo, centered title, right actions */
     .topbar-inner{
-      /* was: max-width: 1200px; margin: 0 auto; */
       width: 100%;
       max-width: none;        /* let it touch both edges */
       margin: 0;
@@ -95,8 +94,8 @@
     @media (max-width: 991.98px){
       .sidenav-toggle{ display:inline-flex; }
     }
-    /* Visible, high-contrast Logout button */
-/* Logout: muted red base → soft rose hover (dark-UI friendly) */
+
+    /* Logout button */
     .btn-logout{
       background: #b84b57;          /* desaturated red */
       color: #ffffff;
@@ -114,13 +113,10 @@
       box-shadow: 0 8px 22px rgba(207, 126, 146, .22);
     }
     .btn-logout:active{ transform: translateY(0); }
-
-    /* Focus ring (subtle for dark UI) */
     .btn-logout:focus-visible{
       outline: 3px solid rgba(207,126,146,.35);
       box-shadow: 0 0 0 3px rgba(207,126,146,.35);
     }
-
 
     /* Sidebar */
     aside.sidenav{
@@ -129,6 +125,7 @@
       box-shadow: var(--shadow);
       position: sticky; top: var(--topbar-h); align-self: start; height: calc(100dvh - var(--topbar-h));
       display: flex; flex-direction: column;
+      z-index: 1040; /* ensure above content even on desktop */
     }
     .sidenav .nav-wrap{
       padding: 14px;
@@ -167,13 +164,18 @@
         transform: translateX(105%);
         transition: transform .22s ease;
         height: calc(100dvh - var(--topbar-h));
+        z-index: 1040;               /* <-- drawer above content */
+        will-change: transform;
+        box-shadow: 0 20px 40px rgba(0,0,0,.25);
       }
-      body.nav-open aside.sidenav{ transform: translateX(0); }
       .sidenav-backdrop{
         position: fixed; inset: var(--topbar-h) 0 0 0; background: rgba(15,23,40,.35);
         opacity: 0; pointer-events: none; transition: opacity .2s ease;
+        z-index: 1030;               /* <-- backdrop above content, below drawer */
       }
+      body.nav-open aside.sidenav{ transform: translateX(0); }
       body.nav-open .sidenav-backdrop{ opacity: 1; pointer-events: auto; }
+      body.nav-open{ overflow: hidden; } /* prevent background scroll */
     }
 
     /* Main content */

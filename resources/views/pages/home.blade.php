@@ -23,7 +23,7 @@
   /* Hero */
   .hero {
     position:relative;
-    overflow:visible;             /* ⬅️ allow the circle to be fully visible */
+    overflow:visible;             /* allow the circle to be fully visible */
     background:#fff8da;
     padding:96px 0 40px;
   }
@@ -35,45 +35,41 @@
     line-height:1.1;
   }
 
-  .hero-sub {
-    color:#5c4630;
-    font-size:1.1rem;
-  }
+  .hero-sub { color:#5c4630; font-size:1.1rem; }
 
-  /* --- Circle/Blob fix (only this part changed) --- */
+  /* Circle/Blob */
   .hero-blob {
     position: absolute;
     left: 72%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: clamp(420px, 50vw, 680px);   /* bigger, but responsive */
+    width: clamp(420px, 50vw, 680px);
     height: clamp(420px, 50vw, 680px);
     background: radial-gradient(
       ellipse at 30% 30%,
-      #B07A3C 0%,   /* darker light-brown core */
-      #E0C8A5 55%,  /* slightly deeper outer brown */
+      #B07A3C 0%,
+      #E0C8A5 55%,
       transparent 56%
     );
     border-radius: 50%;
     filter: blur(2px);
     opacity: .25;
     pointer-events: none;
-    z-index: 0;                         /* sits behind the circle/image */
+    z-index: 0;
   }
 
   .hero-circle {
     width:min(520px,90%);
     aspect-ratio:1/1;
-    background:#FFDD72; /* theme accent */
+    background:#FFDD72;
     border-radius:50%;
     margin:0 auto;
     display:grid;
     place-items:center;
     position:relative;
-    z-index: 1;                          /* ensure it stays above the blob */
+    z-index: 1;
   }
 
-  /* Mobile/Tablet positioning so the blob stays full and centered */
   @media (max-width: 992px) {
     .hero-blob {
       left: 50%;
@@ -82,104 +78,63 @@
       height: clamp(320px, 70vw, 560px);
     }
   }
-  /* --- end circle fix --- */
 
-  .hero-circle img {
-    width:82%;
-    height:auto;
-    filter:drop-shadow(0 12px 24px rgba(0,0,0,.18));
-  }
+  .hero-circle img { width:82%; height:auto; filter:drop-shadow(0 12px 24px rgba(0,0,0,.18)); }
 
   .rating-badge {
-    position:absolute;
-    bottom:-14px;
-    left:-14px;
-    background:#7fcdd7;
-    color:#fff8da;
-    padding:10px 16px;
-    border-radius:12px;
-    font-weight:700;
-    font-size:.95rem;
-    box-shadow:0 8px 24px rgba(0,0,0,.08);
+    position:absolute; bottom:-14px; left:-14px;
+    background:#7fcdd7; color:#fff8da; padding:10px 16px; border-radius:12px;
+    font-weight:700; font-size:.95rem; box-shadow:0 8px 24px rgba(0,0,0,.08);
   }
 
   /* Chips */
   .chip {
-    display:inline-flex;
-    align-items:center;
-    gap:.5rem;
-    background:#fbea82;
-    color:#6b4226;
-    border-radius:999px;
-    padding:6px 14px;
-    font-weight:600;
-    font-size:.95rem;
+    display:inline-flex; align-items:center; gap:.5rem;
+    background:#fbea82; color:#6b4226; border-radius:999px; padding:6px 14px;
+    font-weight:600; font-size:.95rem;
   }
 
   /* Icons */
   .icon-bubble {
-    width:56px;
-    height:56px;
-    border-radius:50%;
-    display:grid;
-    place-items:center;
-    background:#fff8da;
-    color:#6b4226;
-    border:2px solid rgba(107,66,38,.15);
+    width:56px; height:56px; border-radius:50%;
+    display:grid; place-items:center;
+    background:#fff8da; color:#6b4226; border:2px solid rgba(107,66,38,.15);
   }
 
   /* Modules */
-  .module {
-    transition:transform .18s ease, box-shadow .18s ease;
-  }
-
-  .module:hover {
-    transform:translateY(-4px);
-    box-shadow:0 10px 28px rgba(0,0,0,.1);
-  }
+  .module { transition:transform .18s ease, box-shadow .18s ease; }
+  .module:hover { transform:translateY(-4px); box-shadow:0 10px 28px rgba(0,0,0,.1); }
 
   /* Stats */
-  .stat {
-    font-size:2.25rem;
-    font-weight:800;
-    color:#6b4226;
-  }
+  .stat { font-size:2.25rem; font-weight:800; color:#6b4226; }
+  .stat small { font-size:.95rem; font-weight:600; color:#5c4630; }
 
-  .stat small {
-    font-size:.95rem;
-    font-weight:600;
-    color:#5c4630;
-  }
-
-  /* Stripes & CTA */
-  .stripe {
+  /* ===== Stripes (House rules) – match container width & center ===== */
+  .stripe{
     background: linear-gradient(180deg, #e6ccb2, #f5dcc7);
     border-radius: 28px;
-    padding-left: 24px;
-    padding-right: 24px;
-    margin-left: 16px;
-    margin-right: 16px;
+    /* Keep same visual width as sections above */
+    width: min(100%, 1140px);         /* ≈ .container at xl */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: clamp(16px, 2.5vw, 24px);
+    padding-right: clamp(16px, 2.5vw, 24px);
     overflow: hidden;
     box-shadow: 0 8px 24px rgba(0,0,0,.06);
+  }
+  @media (min-width: 1400px){
+    .stripe{ width: min(100%, 1320px); } /* ≈ .container-xxl */
+  }
+  @media (max-width: 576px){
+    .stripe{ border-radius: 22px; }
   }
 
   /* Footer */
   .footer {
-    background:#6b4226;
-    color:#fff8da;
-    border-radius:28px;
-    padding:48px 28px;
-    font-size:.95rem;
+    background:#6b4226; color:#fff8da; border-radius:28px; padding:48px 28px; font-size:.95rem;
   }
-
-  .footer a {
-    color:#fff8da;
-    text-decoration:none;
-  }
-
-  .footer a:hover {
-    color:#f4978e;
-  }
+  .footer a { color:#fff8da; text-decoration:none; }
+  .footer a:hover { color:#f4978e; }
 </style>
 @endsection
 
@@ -241,7 +196,7 @@
             <img src="https://img.icons8.com/ios-glyphs/48/coffee.png" width="28" height="28" alt="Order">
           </div>
           <h4 class="text-coffee">2) Sip & savor</h4>
-          <p>Choose from our cat-inspired drinks and treats, then relax as the café’s warm vibe surrounds you.</p>
+          <p>Choose from our cat-inspired drinks and treats, then relax as the café's warm vibe surrounds you.</p>
         </div>
       </div>
       <div class="col-md-4">

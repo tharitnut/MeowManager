@@ -16,58 +16,80 @@
   
   <!-- Cat Café Theme -->
   <style>
-    body {
-      background-color: #fff8da; /* cream background */
-      color: #5c4630; /* dark mocha text */
-      font-family: 'Kodchasan', sans-serif;
+  body {
+    background-color: #fff8da; /* cream background */
+    color: #5c4630;            /* dark mocha text */
+    font-family: 'Kodchasan', sans-serif;
+  }
+
+  .navbar {
+    background-color: #6b4226; /* coffee brown */
+  }
+
+  .navbar-brand {
+    color: #FFDD72 !important; /* cream */
+    font-weight: 700;
+    font-size: 36px;
+  }
+
+  /* Links */
+  .navbar-nav .nav-link {
+    color: #FFF7E1 !important; /* cream */
+    font-weight: 600;
+    font-size: 20px;
+    margin: 12px 6px 0 0;      /* top right bottom left */
+    transition: color 0.3s ease;
+  }
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link.active {
+    color: #FFDD72 !important; /* accent */
+  }
+
+  /* Login button */
+  .btn-login {
+    background-color: #F1D7A4;
+    color: #4A2C2A;
+    font-weight: 600;
+    border-radius: 30px;
+    padding: 6px 18px;
+    transition: all 0.3s ease;
+  }
+  .btn-login:hover {
+    background-color: #D08B49;
+    color: #FFFFFF;
+  }
+
+  footer {
+    color: #6b4226;
+    font-size: 0.9rem;
+  }
+
+  /* ===== Responsive navbar polish (no markup changes needed) ===== */
+  .navbar .navbar-toggler {
+    border-color: rgba(255,255,255,.45);
+    padding: .35rem .5rem;
+  }
+  .navbar .navbar-toggler:focus { box-shadow: none; }
+  /* ensure white hamburger on dark bar */
+  .navbar .navbar-toggler-icon { filter: invert(100%); opacity: .9; }
+
+  @media (max-width: 991.98px) {
+    .navbar-brand { font-size: 28px; }
+    .navbar-collapse {
+      background-color: #6b4226; /* same coffee brown when collapsed */
+      padding: .5rem 0;
     }
-
-    .navbar {
-      background-color: #6b4226; /* coffee brown */    
-    }
-
-    .navbar-brand {
-      color: #FFDD72 !important; /* cream */
-      font-weight: 700;
-      font-size: 36px;
-    }
-
-    /* .navbar-brand:hover {
-      color: #FFDD72 !important; playful pink
-    } */
-
     .navbar-nav .nav-link {
-      color: #FFF7E1 !important; /* cream */
-      font-weight: 600;
-      font-size: 20px;
-      margin: 12px 6px 0 0; /* top right bottom left */
-      transition: color 0.3s ease;
+      margin: .25rem 0;       /* tidy vertical spacing in the dropdown */
+      font-size: 18px;
     }
-
-    .navbar-nav .nav-link:hover,
-    .navbar-nav .nav-link.active {
-      color: #FFDD72 !important; /* green highlight */
-    }
-
     .btn-login {
-      background-color: #F1D7A4; /* pastel pink */
-      color: #4A2C2A; /* brown text */
-      font-weight: 600;
-      border-radius: 30px;
-      padding: 6px 18px;
-      transition: all 0.3s ease;
+      width: 100%;            /* easier tap target on mobile */
+      margin-top: .5rem;
     }
+  }
+</style>
 
-    .btn-login:hover {
-      background-color: #D08B49; /* green on hover */
-      color: #FFFFFF; /* cream text */
-    }
-
-    footer {
-      color: #6b4226;
-      font-size: 0.9rem;
-    }
-  </style>
 
   @yield('css_before')
 </head>
@@ -75,7 +97,7 @@
 <body>
 
   <!-- start navbar  -->
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid"> <!-- full width -->
       <a class="navbar-brand d-flex align-items-center" href="/">
         <img src="{{ asset('images/MeowMoment_logo.png') }}" alt="MeowMoment Logo" 
