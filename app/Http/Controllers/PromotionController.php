@@ -186,7 +186,7 @@ class PromotionController extends Controller
     public function home_index()
     {
         Paginator::useBootstrap(); // ใช้ Bootstrap pagination
-        $promotions = PromotionModel::orderBy('promotion_id', 'desc')->paginate(12); //order by & pagination
+        $promotions = PromotionModel::orderBy('promotion_id', 'desc')->paginate(4); //order by & pagination
         //return response()->json(['error' => $e->getMessage()], 500); //สำหรับ debug
         return view('pages.promotion_index', compact('promotions'));
     }
@@ -208,7 +208,7 @@ class PromotionController extends Controller
             return response()->json(['error' => $e->getMessage()], 500); //สำหรับ debug
             // return view('errors.404');
         }
-    } //func edit
+    } 
     
 
-} //class
+} 

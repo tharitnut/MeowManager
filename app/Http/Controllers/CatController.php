@@ -238,5 +238,6 @@ class CatController extends Controller
             return response()->json(['error' => $e->getMessage()], 500); //สำหรับ debug
             // return view('errors.404');
         }
-    } //func edit
+    }
+    
 } //class
